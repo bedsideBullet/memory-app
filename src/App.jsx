@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ThemeProvider, CssBaseline, Button } from '@mui/material';
+import { ThemeProvider, CssBaseline, Button, Typography, Box } from '@mui/material';
 import Menu from './components/Menu';
 import GameBoard from './components/GameBoard';
 import AppDrawer from './components/AppDrawer';
@@ -25,7 +25,13 @@ const App = () => {
   return (
     <ThemeProvider theme={currentTheme}>
       <CssBaseline />
-      <div>
+      <Box style={{ textAlign: 'center', padding: '20px' }}>
+        {/* App Title */}
+        <Typography variant="h4" style={{ marginBottom: '20px' }}>
+          Video Game Memory Match
+        </Typography>
+
+        {/* Menu or GameBoard */}
         <Button
           style={{ position: 'absolute', top: '10px', left: '10px' }}
           onClick={() => setDrawerOpen(true)}
@@ -37,12 +43,14 @@ const App = () => {
         ) : (
           <Menu onCategorySelect={handleCategorySelect} />
         )}
+
+        {/* Drawer */}
         <AppDrawer
           open={drawerOpen}
           onClose={() => setDrawerOpen(false)}
           onThemeSelect={handleThemeSelect}
         />
-      </div>
+      </Box>
     </ThemeProvider>
   );
 };

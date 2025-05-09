@@ -8,15 +8,23 @@ const Menu = ({ onCategorySelect }) => {
   ];
 
   return (
-    <div style={{ padding: '20px', textAlign: 'center' }}>
-      <Typography variant="h4">Video Game Memory Match</Typography>
-      <Typography variant="body1" style={{ margin: '10px 0' }}>
-        Instructions: Match pairs of cards before time runs out!
+    <div style={{
+      padding: '20px', 
+      textAlign: 'center', 
+      maxWidth: '600px', 
+      margin: '0 auto' // Center the menu
+    }}>
+      <Typography variant="h5" style={{ marginBottom: '10px' }}>
+        Choose a Category
       </Typography>
       <Grid container spacing={2} justifyContent="center">
         {categories.map((category, index) => (
           <Grid item key={index}>
-            <Button variant="contained" onClick={() => onCategorySelect(category)}>
+            <Button 
+              variant="contained" 
+              onClick={() => onCategorySelect(category)} 
+              style={{ minWidth: '150px' }}
+            >
               {category}
             </Button>
           </Grid>

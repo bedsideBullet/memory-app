@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { Grid, Typography } from '@mui/material';
 import Swal from 'sweetalert2';
+import Card from './Card'; // Import the Card component
+import tokens from '../tokens'; // Import the tokens array
 
 const GameBoard = ({ category }) => {
   useEffect(() => {
@@ -13,28 +15,38 @@ const GameBoard = ({ category }) => {
     });
   }, []);
 
-  const cards = Array.from({ length: 16 }, (_, i) => (
-    <Grid item xs={3} key={i}>
-      <div style={{
-        backgroundColor: 'grey',
-        height: '100px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: '8px'
-      }}>
-        Card {i + 1}
-      </div>
-    </Grid>
-  ));
-
   return (
-    <div style={{ padding: '20px', textAlign: 'center' }}>
-      <Typography variant="h4">Video Game Memory Match</Typography>
-      <Typography variant="body1">Time: 30s | Level: 1 | Score: 0</Typography>
-      <Grid container spacing={2} style={{ marginTop: '10px' }}>
-        {cards}
-      </Grid>
+    <div style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100vh',
+      padding: '20px',
+      textAlign: 'center',
+    }}>
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(4, 1fr)', // 4 cards per row
+        gap: '16px',
+        width: '90%',
+        maxWidth: '1200px',
+      }}>
+        <Typography variant="body1" style={{
+          gridColumn: 'span 4', // Span the entire row for text
+          textAlign: 'center',
+          marginBottom: '20px',
+        }}>
+          Time: 30s | Level: 1 | Score: 0
+        </Typography>
+        {tokens.map((token) => (
+          <Card
+            key={token.id}
+            image={token.image}
+            category={token.category}
+            id={token.id}
+          />
+        ))}
+      </div>
     </div>
   );
 };
