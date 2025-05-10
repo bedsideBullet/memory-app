@@ -82,17 +82,7 @@ const GameBoard = ({ category, onEndGame, highScores, setHighScores }) => {
 		}
 	};
 
-	// Function to reset game state for a new level or game start
-	const resetGame = () => {
-		let filteredTokens = [];
-		if (category === "All Games") {
-			filteredTokens = tokens;
-		} else {
-			const categoryNumber = categoriesMap[category];
-			filteredTokens = tokens.filter(
-				(token) => token.category === categoryNumber.toString()
-			);
-		}
+	
 
 		const selectedTokens = [];
 		while (selectedTokens.length < 8 && filteredTokens.length > 0) {
@@ -117,8 +107,7 @@ const GameBoard = ({ category, onEndGame, highScores, setHighScores }) => {
 	};
 
 	useEffect(() => {
-		// Initial game setup
-		resetGame();
+		
 
 		// Function to show all cards flipped for 3 seconds
 		const showCardsPreview = () => {
@@ -334,7 +323,7 @@ const GameBoard = ({ category, onEndGame, highScores, setHighScores }) => {
 			</div>
 		</div>
 	);
-};
+
 
 const categoriesMap = {
 	"Franchise One": 1,
@@ -345,3 +334,4 @@ const categoriesMap = {
 };
 
 export default GameBoard;
+
